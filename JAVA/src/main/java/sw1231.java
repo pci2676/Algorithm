@@ -16,7 +16,7 @@
 //    }
 //
 //    static String[] nodeValue;
-//    static String answer;
+//    static String maxDistance;
 //
 //    public static void main(String[] args) throws Exception {
 //
@@ -24,7 +24,7 @@
 //
 //        for (int t = 1; t <= 10; t++) {
 //            Node root = null;
-//            answer = "";
+//            maxDistance = "";
 //
 //            int nodeAmount = Integer.parseInt(bufferedReader.readLine());
 //            String temp = bufferedReader.readLine();
@@ -36,7 +36,7 @@
 //                createNode(root);
 //            }
 //            inOrder(root);
-//            System.out.println("#" + t + " " + answer);
+//            System.out.println("#" + t + " " + maxDistance);
 //        }
 //    }
 //
@@ -60,7 +60,7 @@
 //        if (node.left != null) {
 //            inOrder(node.left);
 //        }
-//        answer += node.value;
+//        maxDistance += node.value;
 //        if (node.right != null) {
 //            inOrder(node.right);
 //        }

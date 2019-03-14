@@ -37,9 +37,9 @@
 //                lineArr = line.split(" ");
 //                node[i] = createNode();
 //            }
-//            int answer = (int) inOrder(1);
+//            int maxDistance = (int) inOrder(1);
 //
-//            System.out.println("#" + t + " " + answer);
+//            System.out.println("#" + t + " " + maxDistance);
 //        }
 //    }
 //

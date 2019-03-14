@@ -9,7 +9,7 @@
 //    public static void main(String args[]) {
 //
 //        Scanner scanner = new Scanner(System.in);
-//        int answer[] = new int[10];
+//        int maxDistance[] = new int[10];
 //
 //        for (int t = 0; t < 10; t++) {
 //            scanner.nextInt();
@@ -30,13 +30,13 @@
 //            int dest = getDest();
 //            move(dest, 98, 3);
 //            //정답을 저장하는 로직
-//            answer[t] = startingPoint;
-////            System.out.println("T : " + t + " dest: " + dest + " start: " + answer[t]);
+//            maxDistance[t] = startingPoint;
+////            System.out.println("T : " + t + " dest: " + dest + " start: " + maxDistance[t]);
 //        }
 //
 //        //정답을 출력하는 부분
 //        for (int i = 0; i < 10; i++)
-//            System.out.println("#" + (i + 1) + " " + answer[i]);
+//            System.out.println("#" + (i + 1) + " " + maxDistance[i]);
 //    }
 //
 //

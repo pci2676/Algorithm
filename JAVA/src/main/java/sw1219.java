@@ -10,15 +10,15 @@
 //
 //    static List road;
 //
-//    static int[] answer;
+//    static int[] maxDistance;
 //
 //    public static void main(String[] args) {
 //
 //        Scanner scanner = new Scanner(System.in);
-//        answer = new int[10];
+//        maxDistance = new int[10];
 //
 //        for (int t = 0; t < 10; t++) {
-//            answer[t] = 0;
+//            maxDistance[t] = 0;
 //
 //            map1 = new HashMap<>();
 //            map2 = new HashMap<>();
@@ -41,7 +41,7 @@
 //
 //            search("0", t);
 //
-//            System.out.println("#" + testCaseNumber + " " + answer[t]);
+//            System.out.println("#" + testCaseNumber + " " + maxDistance[t]);
 //        }
 //
 //    }
@@ -57,7 +57,7 @@
 //            return;
 //        } else {//map1에 key가 존재
 //            if (check(map, key)) {
-//                answer[index] = 1;
+//                maxDistance[index] = 1;
 //                return;
 //            } else {
 //                search(map.get(key), index);

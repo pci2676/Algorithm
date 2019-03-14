@@ -25,13 +25,13 @@
 //    static String line;
 //    static String[] lineArr;
 //    static Node[] node;
-//    static int answer;
+//    static int maxDistance;
 //
 //    public static void main(String[] args) throws Exception {
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //
 //        for (int t = 1; t <= 10; t++) {
-//            answer=1;
+//            maxDistance=1;
 //            int nodeAmount = Integer.parseInt(br.readLine());
 //            node = new Node[nodeAmount + 1];
 //            for (int i = 1; i <= nodeAmount; i++) {
@@ -42,7 +42,7 @@
 //
 //            inOrder(1);
 //
-//            System.out.println("#" + t + " " + answer);
+//            System.out.println("#" + t + " " + maxDistance);
 //        }
 //    }
 //
@@ -72,7 +72,7 @@
 //            node[index].left = -1;
 //        } else {
 //            if (node[index].value.matches("[^0-9]*")) {
-//                answer = 0;
+//                maxDistance = 0;
 //                return 1;
 //            }
 //            return Double.parseDouble(node[index].value);
@@ -88,7 +88,7 @@
 //        else if (node[index].value.equals("*")) result = leftNumber * rightNumber;
 //        else if (node[index].value.equals("/")) result = leftNumber / rightNumber;
 //        else {
-//            answer = 0;
+//            maxDistance = 0;
 //            return 1;
 //        }
 //        return result;

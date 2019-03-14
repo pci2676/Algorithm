@@ -12,7 +12,7 @@
 //    public static void main(String ars[]) {
 //        Scanner scanner = new Scanner(System.in);
 //        int T = scanner.nextInt();
-//        int[] answer = new int[T];
+//        int[] maxDistance = new int[T];
 //        for (int t = 0; t < T; t++) {
 //            testCase = new int[4][4];
 //            hashSet = new HashSet<>();
@@ -29,11 +29,11 @@
 //                }
 //            }
 //
-//            answer[t] = hashSet.size();
+//            maxDistance[t] = hashSet.size();
 //        }
 //
 //        for (int t = 0; t < T; t++) {
-//            System.out.println("#" + (t + 1) + " " + answer[t]);
+//            System.out.println("#" + (t + 1) + " " + maxDistance[t]);
 //        }
 //    }
 //

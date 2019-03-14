@@ -13,15 +13,15 @@
 //        for (int t = 1; t <= 10; t++) {
 //            line = br.readLine();
 //            lineArr = line.split(" ");
-//            String answer = lineArr[1];
+//            String maxDistance = lineArr[1];
 //
 //            while (true) {
-//                int length = answer.length();
-//                answer = answer.replaceAll(REG, "");
-//                if(length==answer.length())
+//                int length = maxDistance.length();
+//                maxDistance = maxDistance.replaceAll(REG, "");
+//                if(length==maxDistance.length())
 //                    break;
 //            }
-//            System.out.println("#" + t + " " + answer);
+//            System.out.println("#" + t + " " + maxDistance);
 //        }
 //    }
 //}

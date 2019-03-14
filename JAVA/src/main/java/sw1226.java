@@ -6,7 +6,7 @@
 //    static final int[] dy = {1, -1, 0, 0};
 //
 //    static String[][] map;
-//    static int answer[] = new int[10];
+//    static int maxDistance[] = new int[10];
 //
 //    public static void main(String[] args) {
 //
@@ -14,7 +14,7 @@
 //
 //        for (int t = 0; t < 10; t++) {
 //            map = new String[16][16];
-//            answer[t] = 0;
+//            maxDistance[t] = 0;
 //            int testCaseNumber = scanner.nextInt();
 //
 //            for (int i = 0; i < 16; i++) {
@@ -27,14 +27,14 @@
 //
 //            dfs(1, 1, t);
 //
-//            System.out.println("#"+testCaseNumber+" "+answer[t]);
+//            System.out.println("#"+testCaseNumber+" "+maxDistance[t]);
 //        }
 //    }
 //
 //    private static void dfs(int col, int row, int t) {
 //
 //        if (map[col][row].equals("3")) {
-//            answer[t] = 1;
+//            maxDistance[t] = 1;
 //            return;
 //        } else {
 //            for (int i = 0; i < 4; i++) {

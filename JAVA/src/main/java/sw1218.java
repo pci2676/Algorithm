@@ -5,7 +5,7 @@
 //
 //public class sw1218 {
 //
-//    static int[] answer = new int[10];
+//    static int[] maxDistance = new int[10];
 //    static List<String> list;
 //    static HashMap<String, String> map = new HashMap<>();
 //
@@ -21,7 +21,7 @@
 //        Scanner scanner = new Scanner(System.in);
 //
 //        for (int t = 0; t < 10; t++) {
-//            answer[t] = 1;
+//            maxDistance[t] = 1;
 //            list = new LinkedList<>();
 //
 //            int length = scanner.nextInt();
@@ -38,7 +38,7 @@
 //                }
 //            }
 //
-//            System.out.println("#" + (t + 1) + " " + answer[t]);
+//            System.out.println("#" + (t + 1) + " " + maxDistance[t]);
 //
 //        }
 //
@@ -53,7 +53,7 @@
 //        if (top.equals(map.get(token))) {
 //            list.remove(list.size() - 1);
 //        } else {
-//            answer[index] = 0;
+//            maxDistance[index] = 0;
 //        }
 //    }
 //
