@@ -9,6 +9,7 @@ import java.util.List;
 public class bj6603 {
 
     static List<Integer> answer;
+    static StringBuilder sb;
 
 
     public static void main(String[] args) throws Exception {
@@ -45,19 +46,20 @@ public class bj6603 {
         answer.add(numbers[index]);
 
         if (answer.size() == 6) {
+            sb = new StringBuilder();
             for (int i = 0; i < 6; i++) {
-                System.out.print(answer.get(i) + " ");
+                sb.append(answer.get(i));
+                sb.append(" ");
             }
-            System.out.println();
-            deleteEnd();
-            return;
-        }
+            System.out.println(sb.toString());
+        } else {
+            for (int i = 1; i < length; i++) {
+                if (i + index >= length) {
+                    break;
+                }
+                dfs(numbers, index + i, length);
+            }
 
-        for (int i = 1; i < length; i++) {
-            if (i + index >= length) {
-                break;
-            }
-            dfs(numbers, index + i, length);
         }
         deleteEnd();
     }
