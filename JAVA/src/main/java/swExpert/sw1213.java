@@ -17,9 +17,8 @@ public class sw1213 {
 
             StringBuilder sb = new StringBuilder();
             sb.append(" ").append(question).append(" ");
-
-
             answer = sb.toString().split(regex).length - 1;
+
             if (answer == -1) {
                 answer = 0;
             }
