@@ -1,6 +1,8 @@
 package programers.bruteForce;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class GiveUpMath {
     static class Solution {
@@ -23,17 +25,18 @@ public class GiveUpMath {
                     .max()
                     .getAsInt();
 
-            String answerIndex = "";
+            List<Integer> answerIndex = new ArrayList<>();
 
             for (int i = 0; i < count.length; i++) {
                 if (max == count[i]) {
-                    answerIndex += i+1;
+                    answerIndex.add(i + 1);
                 }
             }
 
-            answer = Arrays.stream(answerIndex.split(""))
-                    .mapToInt(Integer::valueOf)
-                    .toArray();
+            answer = new int[answerIndex.size()];
+            for (int i = 0; i < answerIndex.size(); i++) {
+                answer[i] = answerIndex.get(i);
+            }
 
             return answer;
         }
