@@ -61,7 +61,6 @@ public class Lv2Test1_DFS {
             answer = answer * 10 + numbers.get(pick);
         }
         answers.add(answer);
-        System.out.println(answers);
     }
 
     private static void removePick(List<Integer> picked, int index) {
