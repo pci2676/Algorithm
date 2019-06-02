@@ -5,9 +5,9 @@ import java.util.Set;
 
 
 /**
- *  브루트 포스의 유명한 문제라고 한다.
- *  접근 방법을 찾지 못해서 결국 다른 사람의 답을 한번보고 작성하였다.
- *  정답을 가정하고 접근하는 문제였다.
+ * 브루트 포스의 유명한 문제라고 한다.
+ * 접근 방법을 찾지 못해서 결국 다른 사람의 답을 한번보고 작성하였다.
+ * 정답을 가정하고 접근하는 문제였다.
  */
 public class BaseBallGame_R {
 
@@ -20,7 +20,6 @@ public class BaseBallGame_R {
     }
 
     public static void main(String[] args) {
-
         int[][] baseball = {{123, 1, 1}, {356, 1, 0}, {327, 2, 0}, {489, 0, 1}};
 
         Set<String> answers = new HashSet<>();
@@ -31,16 +30,14 @@ public class BaseBallGame_R {
             }
             answers.add(maybe);
 
-            for (int i = 0; i < baseball.length; i++) {
-                if (!canAnswer(maybe, baseball[i])) {
+            for (int[] aBaseball : baseball) {
+                if (!canAnswer(maybe, aBaseball)) {
                     answers.remove(maybe);
                 }
             }
-
         }
 
         System.out.println(answers);
-
     }
 
     private static boolean canAnswer(String maybe, int[] baseball) {
@@ -48,61 +45,42 @@ public class BaseBallGame_R {
         int strike = baseball[1];
         int ball = baseball[2];
 
-        return (strike == getStrike(maybe, attack)) && (ball == getBall(maybe, attack));
-
+        return hasCorrectStrikeAndBall(maybe, attack, strike, ball);
     }
 
-    private static int getStrike(String maybe, String attack) {
-        String[] maybeSplited = maybe.split("");
-        String maybeFirst = maybeSplited[0];
-        String maybeSecond = maybeSplited[1];
-        String maybeThird = maybeSplited[2];
+    private static boolean hasCorrectStrikeAndBall(String maybe, String attack, int strike, int ball) {
+        char maybeFirst = maybe.charAt(0);
+        char maybeSecond = maybe.charAt(1);
+        char maybeThird = maybe.charAt(2);
 
-        String[] attackSplited = attack.split("");
-        String attackFirst = attackSplited[0];
-        String attackSecond = attackSplited[1];
-        String attackThird = attackSplited[2];
+        char attackFirst = attack.charAt(0);
+        char attackSecond = attack.charAt(1);
+        char attackThird = attack.charAt(2);
 
-        int count = 0;
-
-        if (maybeFirst.equals(attackFirst)) {
-            count++;
+        int strikeCount = 0;
+        if (maybeFirst == attackFirst) {
+            strikeCount++;
         }
-        if (maybeSecond.equals(attackSecond)) {
-            count++;
+        if (maybeSecond == attackSecond) {
+            strikeCount++;
         }
-        if (maybeThird.equals(attackThird)) {
-            count++;
+        if (maybeThird == attackThird) {
+            strikeCount++;
         }
 
-        return count;
+        int ballCount = 0;
+        if (maybeFirst == attackSecond || maybeFirst == attackThird) {
+            ballCount++;
+        }
+        if (maybeSecond == attackFirst || maybeSecond == attackThird) {
+            ballCount++;
+        }
+        if (maybeThird == attackSecond || maybeThird == attackFirst) {
+            ballCount++;
+        }
+
+        return (strike == strikeCount) && (ball == ballCount);
     }
-
-    private static int getBall(String maybe, String attack) {
-        String[] maybeSplited = maybe.split("");
-        String maybeFirst = maybeSplited[0];
-        String maybeSecond = maybeSplited[1];
-        String maybeThird = maybeSplited[2];
-
-        String[] attackSplited = attack.split("");
-        String attackFirst = attackSplited[0];
-        String attackSecond = attackSplited[1];
-        String attackThird = attackSplited[2];
-
-        int count = 0;
-        if (maybeFirst.equals(attackSecond)||maybeFirst.equals(attackThird)) {
-            count++;
-        }
-        if (maybeSecond.equals(attackFirst)||maybeSecond.equals(attackThird)) {
-            count++;
-        }
-        if (maybeThird.equals(attackSecond)||maybeThird.equals(attackFirst)) {
-            count++;
-        }
-
-        return count;
-    }
-
 
     private static boolean hasZero(String src) {
         String[] maybe = src.split("");
