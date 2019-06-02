@@ -42,7 +42,7 @@ public class FindK {
         for (int post = 0; post < size; post++) {
             src[post] = array[offset + post];
             int pivot = post;
-            for (int pre = pivot - 1; pre >= 0; pre--) {
+            for (int pre = post - 1; pre >= 0; pre--) {
                 if (src[pre] > src[pivot]) {
                     int temp = src[pivot];
                     src[pivot] = src[pre];
