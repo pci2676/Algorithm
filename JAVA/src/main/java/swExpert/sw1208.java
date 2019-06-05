@@ -14,8 +14,7 @@ public class sw1208 {
 
             int dumps = Integer.valueOf(br.readLine());
 
-            int[] heights = Arrays.stream(br.readLine()
-                    .split(" "))
+            int[] heights = Arrays.stream(br.readLine().split(" "))
                     .mapToInt(Integer::valueOf)
                     .toArray();
 

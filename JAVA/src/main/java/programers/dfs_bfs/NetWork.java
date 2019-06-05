@@ -15,6 +15,19 @@ public class NetWork {
     class Solution {
         public int solution(int n, int[][] computers) {
             int answer = 0;
+
+            visit = new boolean[n];
+
+            for (int i = 0; i < n; i++) {
+                if (visit[i]) {
+                    continue;
+                }
+
+                answer++;
+
+                bfs(computers, i);
+            }
+
             return answer;
         }
     }
@@ -46,7 +59,6 @@ public class NetWork {
     private static void bfs(int[][] computers, int now) {
 
         if (visit[now]) {
-            System.out.println("visited " + now);
             return;
         }
 
