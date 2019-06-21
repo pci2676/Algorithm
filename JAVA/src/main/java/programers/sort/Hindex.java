@@ -14,7 +14,7 @@ public class Hindex {
 
         for (int i = 0; i < citations[citations.length - 1]; i++) {
             int small = 0;
-            int big = 0;
+            int big;
             int before = hIndex;
 
             hIndex = i;
@@ -27,12 +27,15 @@ public class Hindex {
                     small++;
                 }
             }
+
             big = citations.length - small;
-            if (big < hIndex || small > hIndex) {
+
+            if (big < hIndex || hIndex < small) {
                 hIndex = before;
                 break;
             }
         }
+
         answer = hIndex;
 
         System.out.println(answer);
