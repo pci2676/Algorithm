@@ -3,6 +3,7 @@ package swExpert;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 
 public class sw8016 {
 
@@ -14,9 +15,14 @@ public class sw8016 {
 
         for (int t = 1; t <= T; t++) {
 
-            long left = (t - 1) * (t - 1) * 2 + 1;
-            long right = t * t * 2 - 1;
+            int k = Integer.valueOf(br.readLine());
 
+            BigInteger bLeft = BigInteger.valueOf(k).subtract(BigInteger.valueOf(1L));
+            BigInteger bRight = BigInteger.valueOf(k);
+
+            BigInteger left = bLeft.multiply(bLeft).multiply(BigInteger.valueOf(2L)).add(BigInteger.ONE);
+            BigInteger right = bRight.multiply(bRight).multiply(BigInteger.valueOf(2L)).subtract(BigInteger.ONE);
+            //1+()
 
             System.out.println(String.format("#%d %d %d", t, left, right));
         }
