@@ -3,7 +3,6 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class bj2293 {
@@ -20,23 +19,13 @@ public class bj2293 {
         for (int i = 0; i < amount; i++) {
             values[i] = Integer.valueOf(br.readLine());
         }
-        dp[values[0]] = 1;
+        dp[0] = 1;
 
-        for (int i = values[0]; i <= target; i++) {
-
-            int range;
-            if (i % 2 == 0) {
-                range = i / 2 + 1;
-            } else {
-                range = i / 2;
-            }
-
-            for (int j = 1; j < range; j++) {
-                dp[i] = dp[j] + dp[i - j];
-            }
-
-            if (Arrays.asList(values).contains(dp[i])) {
-                dp[i]++;
+        for (int i = 0; i < amount; i++) {
+            for (int j = 1; j <= target; j++) {
+                if (j - values[i] >= 0) {
+                    dp[j] = dp[j] + dp[j - values[i]];
+                }
             }
         }
 
