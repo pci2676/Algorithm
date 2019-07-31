@@ -5,25 +5,6 @@ import java.io.InputStreamReader;
 
 public class sw1232 {
 
-    static class Node {
-        int index;
-        String value;
-        int left = -1;
-        int right = -1;
-
-        Node(int index, String value) {
-            this.index = index;
-            this.value = value;
-        }
-
-        Node(int index, String value, int left, int right) {
-            this.index = index;
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     static String line;
     static String[] lineArr;
     static Node[] node;
@@ -58,9 +39,6 @@ public class sw1232 {
         return node;
     }
 
-    //왼쪽으로 갈수 없다면 숫자를 가지고 있는 노드
-    //왼쪽이나 오른쪽으로 갈수 있다면 연산자를 가지고 있는 노드
-
     private static double inOrder(int index) {
         double leftNumber;
         double rightNumber = 0;
@@ -82,6 +60,28 @@ public class sw1232 {
         else if (node[index].value.equals("*")) result = leftNumber * rightNumber;
         else if (node[index].value.equals("/")) result = leftNumber / rightNumber;
         return result;
+    }
+
+    //왼쪽으로 갈수 없다면 숫자를 가지고 있는 노드
+    //왼쪽이나 오른쪽으로 갈수 있다면 연산자를 가지고 있는 노드
+
+    static class Node {
+        int index;
+        String value;
+        int left = -1;
+        int right = -1;
+
+        Node(int index, String value) {
+            this.index = index;
+            this.value = value;
+        }
+
+        Node(int index, String value, int left, int right) {
+            this.index = index;
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
     }
 
 

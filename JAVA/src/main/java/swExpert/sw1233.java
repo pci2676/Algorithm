@@ -5,25 +5,6 @@ import java.io.InputStreamReader;
 
 public class sw1233 {
 
-    static class Node {
-        int index;
-        String value;
-        int left = -1;
-        int right = -1;
-
-        Node(int index, String value) {
-            this.index = index;
-            this.value = value;
-        }
-
-        Node(int index, String value, int left, int right) {
-            this.index = index;
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     static String line;
     static String[] lineArr;
     static Node[] node;
@@ -33,7 +14,7 @@ public class sw1233 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         for (int t = 1; t <= 10; t++) {
-            maxDistance=1;
+            maxDistance = 1;
             int nodeAmount = Integer.parseInt(br.readLine());
             node = new Node[nodeAmount + 1];
             for (int i = 1; i <= nodeAmount; i++) {
@@ -60,9 +41,6 @@ public class sw1233 {
             node = new Node(idx, value);
         return node;
     }
-
-    //왼쪽으로 갈수 없다면 숫자를 가지고 있는 노드
-    //왼쪽이나 오른쪽으로 갈수 있다면 연산자를 가지고 있는 노드
 
     private static double inOrder(int index) {
         double leftNumber;
@@ -94,6 +72,28 @@ public class sw1233 {
             return 1;
         }
         return result;
+    }
+
+    //왼쪽으로 갈수 없다면 숫자를 가지고 있는 노드
+    //왼쪽이나 오른쪽으로 갈수 있다면 연산자를 가지고 있는 노드
+
+    static class Node {
+        int index;
+        String value;
+        int left = -1;
+        int right = -1;
+
+        Node(int index, String value) {
+            this.index = index;
+            this.value = value;
+        }
+
+        Node(int index, String value, int left, int right) {
+            this.index = index;
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
     }
 
 

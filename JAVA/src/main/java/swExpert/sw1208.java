@@ -49,7 +49,7 @@ public class sw1208 {
             int finalMax = Arrays.stream(heights).max().getAsInt();
             int finalMin = Arrays.stream(heights).min().getAsInt();
 
-            System.out.println("# " + (test+1) + " " + (finalMax - finalMin));
+            System.out.println("# " + (test + 1) + " " + (finalMax - finalMin));
 
         }
 

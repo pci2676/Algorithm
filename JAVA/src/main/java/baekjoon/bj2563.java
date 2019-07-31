@@ -28,7 +28,7 @@ public class bj2563 {
         int answer = 0;
         for (int i = 0; i < 100; i++) {
             for (int j = 0; j < 100; j++) {
-                if(map[j][i]==1)
+                if (map[j][i] == 1)
                     answer++;
             }
 

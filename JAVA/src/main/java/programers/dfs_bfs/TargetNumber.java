@@ -17,7 +17,7 @@ public class TargetNumber {
         int target = 3;
 
 
-        dfs(numbers,target,0,0);
+        dfs(numbers, target, 0, 0);
         System.out.println(answer);
     }
 

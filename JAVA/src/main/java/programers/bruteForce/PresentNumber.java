@@ -1,13 +1,6 @@
 package programers.bruteForce;
 
 public class PresentNumber {
-    class Solution {
-        public int solution(int n) {
-            int answer = 0;
-            return answer;
-        }
-    }
-
     public static void main(String[] args) {
         int n = 15;
         int answer = 0;
@@ -25,5 +18,12 @@ public class PresentNumber {
             }
         }
 
+    }
+
+    class Solution {
+        public int solution(int n) {
+            int answer = 0;
+            return answer;
+        }
     }
 }

@@ -5,18 +5,6 @@ import java.io.InputStreamReader;
 
 public class sw1231 {
 
-    static class Node {
-        Integer index;
-        String value;
-        Node left = null;
-        Node right = null;
-
-        Node(Integer index, String value) {
-            this.index = index;
-            this.value = value;
-        }
-    }
-
     static String[] nodeValue;
     static String maxDistance;
 
@@ -42,7 +30,6 @@ public class sw1231 {
         }
     }
 
-
     private static void createNode(Node node) {
         int index = Integer.parseInt(nodeValue[0]);
         String value = nodeValue[1];
@@ -65,6 +52,18 @@ public class sw1231 {
         maxDistance += node.value;
         if (node.right != null) {
             inOrder(node.right);
+        }
+    }
+
+    static class Node {
+        Integer index;
+        String value;
+        Node left = null;
+        Node right = null;
+
+        Node(Integer index, String value) {
+            this.index = index;
+            this.value = value;
         }
     }
 }

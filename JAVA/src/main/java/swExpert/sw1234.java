@@ -20,7 +20,7 @@ public class sw1234 {
             while (true) {
                 int length = maxDistance.length();
                 maxDistance = maxDistance.replaceAll(REG, "");
-                if(length==maxDistance.length())
+                if (length == maxDistance.length())
                     break;
             }
             System.out.println("#" + t + " " + maxDistance);

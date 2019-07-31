@@ -8,19 +8,6 @@ import java.util.List;
 
 public class sw2814 {
 
-    static class Node {
-        int idx;
-
-        boolean isVisit = false;
-
-        List<Integer> conList = new ArrayList<>();
-
-        Node(int idx) {
-            this.idx = idx;
-        }
-
-    }
-
     static Node[] graph;
     static int answer;
 
@@ -78,5 +65,18 @@ public class sw2814 {
             }
             node.isVisit = false;
         }
+    }
+
+    static class Node {
+        int idx;
+
+        boolean isVisit = false;
+
+        List<Integer> conList = new ArrayList<>();
+
+        Node(int idx) {
+            this.idx = idx;
+        }
+
     }
 }

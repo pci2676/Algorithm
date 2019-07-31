@@ -48,7 +48,7 @@ public class FindK {
                     src[pivot] = src[pre];
                     src[pre] = temp;
                     pivot--;
-                } else{
+                } else {
                     break;
                 }
             }

@@ -6,6 +6,31 @@ import java.util.PriorityQueue;
 
 public class bj1931 {
 
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.valueOf(br.readLine());
+
+        PriorityQueue<Room> priorityQueue = new PriorityQueue();
+        for (int t = 0; t < n; t++) {
+            String line = br.readLine();
+            String arr[] = line.split(" ");
+            priorityQueue.offer(new Room(t, arr[0], arr[1]));
+        }
+
+        int count = 1;
+        Room room = priorityQueue.poll();
+        while (!priorityQueue.isEmpty()) {
+            if (room.end <= priorityQueue.peek().start) {
+                count++;
+                room = priorityQueue.poll();
+            } else {
+                priorityQueue.poll();
+            }
+        }
+
+        System.out.println(count);
+    }
+
     static class Room implements Comparable<Room> {
         int id;
         int start;
@@ -32,30 +57,5 @@ public class bj1931 {
                 return 0;
             }
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.valueOf(br.readLine());
-
-        PriorityQueue<Room> priorityQueue = new PriorityQueue();
-        for (int t = 0; t < n; t++) {
-            String line = br.readLine();
-            String arr[] = line.split(" ");
-            priorityQueue.offer(new Room(t, arr[0], arr[1]));
-        }
-
-        int count = 1;
-        Room room = priorityQueue.poll();
-        while (!priorityQueue.isEmpty()) {
-            if (room.end <= priorityQueue.peek().start) {
-                count++;
-                room = priorityQueue.poll();
-            } else {
-                priorityQueue.poll();
-            }
-        }
-
-        System.out.println(count);
     }
 }

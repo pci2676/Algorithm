@@ -31,9 +31,9 @@ public class bj9095 {
             return;
         }
 
-        dfs(now+1,n);
-        dfs(now+2,n);
-        dfs(now+3,n);
+        dfs(now + 1, n);
+        dfs(now + 2, n);
+        dfs(now + 3, n);
 
     }
 }

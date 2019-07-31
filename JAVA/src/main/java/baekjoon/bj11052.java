@@ -19,7 +19,7 @@ public class bj11052 {
             P[i] = Integer.valueOf(st.nextToken());
         }
 
-        long[] dp = new long[N+1];
+        long[] dp = new long[N + 1];
 
         dp[1] = P[1];
         dp[2] = Math.max(dp[1] * 2, P[2]);

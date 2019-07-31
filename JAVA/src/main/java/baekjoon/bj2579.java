@@ -20,7 +20,7 @@ public class bj2579 {
         dp[3] = Math.max(stairs[1] + stairs[3], stairs[2] + stairs[3]);
 
         for (int i = 4; i <= stair; i++) {
-            dp[i] = Math.max(stairs[i]+stairs[i-1]+dp[i-3],stairs[i]+dp[i-2]);
+            dp[i] = Math.max(stairs[i] + stairs[i - 1] + dp[i - 3], stairs[i] + dp[i - 2]);
         }
 
         System.out.println(dp[stair]);

@@ -10,24 +10,6 @@ import java.util.Comparator;
  */
 
 public class BiggestNumber_R {
-    class Solution {
-        public String solution(int[] numbers) {
-            String answer = "";
-
-            return answer;
-        }
-    }
-
-    static class MyNumber implements Comparator<String> {
-
-        @Override
-        public int compare(String o1, String o2) {
-            int combine1 = Integer.valueOf(o1 + o2);
-            int combine2 = Integer.valueOf(o2 + o1);
-            return combine2-combine1;
-        }
-    }
-
     public static void main(String[] args) {
         int[] numbers = {3, 30, 34, 5, 9};
 
@@ -40,6 +22,24 @@ public class BiggestNumber_R {
         String answer = String.join("", numberString);
         if (numberString[0].equals("0")) {
             answer = "0";
+        }
+    }
+
+    static class MyNumber implements Comparator<String> {
+
+        @Override
+        public int compare(String o1, String o2) {
+            int combine1 = Integer.valueOf(o1 + o2);
+            int combine2 = Integer.valueOf(o2 + o1);
+            return combine2 - combine1;
+        }
+    }
+
+    class Solution {
+        public String solution(int[] numbers) {
+            String answer = "";
+
+            return answer;
         }
     }
 

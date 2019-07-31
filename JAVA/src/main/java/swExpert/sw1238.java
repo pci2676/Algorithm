@@ -8,27 +8,9 @@ import java.util.Queue;
 
 public class sw1238 {
 
-    static class Node {
-        int idx;
-        int distance = 0;
-        boolean isVisit = false;
-        HashSet<Integer> lines = new HashSet<>();
-
-        public Node(int idx, int other) {
-            this.idx = idx;
-            lines.add(other);
-        }
-
-        public Node(int idx) {
-            this.idx = idx;
-        }
-    }
-
     static Node[] node;
     static HashSet<Integer> set;
-
     static Queue<Integer> queue;
-
     static int maxDistance;
     static int answerIdx;
 
@@ -111,6 +93,22 @@ public class sw1238 {
                     node[connectedNodeIdx].distance = length;
             }
 
+        }
+    }
+
+    static class Node {
+        int idx;
+        int distance = 0;
+        boolean isVisit = false;
+        HashSet<Integer> lines = new HashSet<>();
+
+        public Node(int idx, int other) {
+            this.idx = idx;
+            lines.add(other);
+        }
+
+        public Node(int idx) {
+            this.idx = idx;
         }
     }
 

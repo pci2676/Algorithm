@@ -13,10 +13,9 @@ public class bj1152 {
         String[] arr = line.split(" ");
         int count = arr.length;
 
-        if(count==0){
+        if (count == 0) {
             System.out.println(0);
-        }
-        else{
+        } else {
             if (arr[0].equals(""))
                 count--;
             System.out.println(count);

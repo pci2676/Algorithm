@@ -3,13 +3,6 @@ package programers.hash;
 import java.util.Hashtable;
 
 public class Camouflage {
-    class Solution {
-        public int solution(String[][] clothes) {
-            int answer = 0;
-            return answer;
-        }
-    }
-
     public static void main(String[] args) {
         int answer = 0;
         String[][] clothes = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}};
@@ -29,5 +22,12 @@ public class Camouflage {
         answer = combination - 1;
 
         System.out.println(answer);
+    }
+
+    class Solution {
+        public int solution(String[][] clothes) {
+            int answer = 0;
+            return answer;
+        }
     }
 }

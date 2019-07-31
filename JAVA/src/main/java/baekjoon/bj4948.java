@@ -11,7 +11,7 @@ public class bj4948 {
     private static int[] all;
 
     public static void main(String[] args) throws Exception {
-        all = new int[246912+1];
+        all = new int[246912 + 1];
 
         int number = getNumber();
         long answer;
@@ -29,8 +29,8 @@ public class bj4948 {
 
     private static void getPrime() {
 
-        for(int i = 2;i<=MAX;i++){
-            all[i]=i;
+        for (int i = 2; i <= MAX; i++) {
+            all[i] = i;
         }
 
         for (int i = 2; i <= MAX; i++) {

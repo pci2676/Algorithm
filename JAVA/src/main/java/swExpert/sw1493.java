@@ -36,7 +36,7 @@ public class sw1493 {
         }
 
         for (int y = 2; y <= 1000; y++) {
-            for (int x = 1; x <=999; x++) {
+            for (int x = 1; x <= 999; x++) {
                 map[x + 1][y] = map[x][y] + y + x;
             }
         }

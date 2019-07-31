@@ -48,7 +48,7 @@ public class sw2819 {
             int x = row + dx[i];
             int y = col + dy[i];
             if (x >= 0 && y >= 0 && x <= 3 && y <= 3) {
-                dfs(x, y, (sum*10+testCase[x][y]), count+1);
+                dfs(x, y, (sum * 10 + testCase[x][y]), count + 1);
             }
         }
     }

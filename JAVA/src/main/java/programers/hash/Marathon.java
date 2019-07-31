@@ -3,13 +3,6 @@ package programers.hash;
 import java.util.Arrays;
 
 public class Marathon {
-    class Solution {
-        public String solution(String[] participant, String[] completion) {
-            String answer = "";
-            return answer;
-        }
-    }
-
     public static void main(String[] args) {
         String[] participant = {"leo", "kiki", "eden", "eden"};
         String[] completion = {"kiki", "eden", "leo"};
@@ -34,6 +27,13 @@ public class Marathon {
 //        answer = runner.getFirst();
 
         System.out.println(answer);
+    }
+
+    class Solution {
+        public String solution(String[] participant, String[] completion) {
+            String answer = "";
+            return answer;
+        }
     }
 
 

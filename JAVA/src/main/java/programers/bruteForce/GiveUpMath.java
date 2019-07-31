@@ -5,6 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GiveUpMath {
+    public static void main(String[] args) {
+
+        Solution solution = new Solution();
+        int[] answers = {1, 2, 3, 4, 5};
+        solution.solution(answers);
+        answers = new int[]{1, 3, 2, 4, 2};
+        solution.solution(answers);
+    }
+
     static class Solution {
         public int[] solution(int[] answers) {
             int[] answer = {};
@@ -40,14 +49,5 @@ public class GiveUpMath {
 
             return answer;
         }
-    }
-
-    public static void main(String[] args) {
-
-        Solution solution = new Solution();
-        int[] answers = {1, 2, 3, 4, 5};
-        solution.solution(answers);
-        answers = new int[]{1, 3, 2, 4, 2};
-        solution.solution(answers);
     }
 }

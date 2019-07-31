@@ -4,17 +4,10 @@ import java.util.Stack;
 
 
 /**
- *  Stack을 쓰는 기본적인 문제이다.
- *  규칙을 찾아서 그에 해당하는 값을 더해주면 되는 문제였다.
+ * Stack을 쓰는 기본적인 문제이다.
+ * 규칙을 찾아서 그에 해당하는 값을 더해주면 되는 문제였다.
  */
 public class IronPipe {
-    class Solution {
-        public int solution(String arrangement) {
-            int answer = 0;
-            return answer;
-        }
-    }
-
     public static void main(String[] args) {
         String arrangement = "()(((()())(())()))(())";
         int answer = 0;
@@ -40,5 +33,12 @@ public class IronPipe {
         }
 
         System.out.println(answer);
+    }
+
+    class Solution {
+        public int solution(String arrangement) {
+            int answer = 0;
+            return answer;
+        }
     }
 }

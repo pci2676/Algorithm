@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class sw1210 {
 
+    final static int[] dx = {-1, 1};
     static int map[][];
     static int startingPoint = 0;
-    final static int[] dx = {-1, 1};
 
     public static void main(String args[]) {
 

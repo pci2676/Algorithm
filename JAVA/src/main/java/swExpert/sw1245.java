@@ -6,12 +6,12 @@ import java.util.StringTokenizer;
 
 public class sw1245 {
 
+    static final double M = 1;
+    static final double G = 1;
     static double answer;
     static int[] magnet;
     static int[] m;
     static int magCount;
-    static final double M = 1;
-    static final double G = 1;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

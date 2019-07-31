@@ -5,17 +5,6 @@ import java.io.InputStreamReader;
 
 public class bj5639 {
 
-    static class Node {
-        int value;
-
-        Node left = null;
-        Node right = null;
-
-        Node(int value) {
-            this.value = value;
-        }
-    }
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -62,5 +51,16 @@ public class bj5639 {
             getAnswer(node.right);
         }
         System.out.println(node.value);
+    }
+
+    static class Node {
+        int value;
+
+        Node left = null;
+        Node right = null;
+
+        Node(int value) {
+            this.value = value;
+        }
     }
 }

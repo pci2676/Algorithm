@@ -16,10 +16,10 @@ public class bj10809 {
         map = putMap(arr);
 
         for (int i = 'a'; i <= 'z'; i++) {
-            if(map.containsKey(i)){
-                System.out.print(map.get(i)+" ");
-            }else{
-                System.out.print(-1+" ");
+            if (map.containsKey(i)) {
+                System.out.print(map.get(i) + " ");
+            } else {
+                System.out.print(-1 + " ");
             }
         }
     }
@@ -27,10 +27,10 @@ public class bj10809 {
     private static Map<Integer, Integer> putMap(String[] arr) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
-            if (map.containsKey((int)arr[i].charAt(0))) {
+            if (map.containsKey((int) arr[i].charAt(0))) {
                 continue;
             }
-            map.put((int)arr[i].charAt(0), i);
+            map.put((int) arr[i].charAt(0), i);
         }
         return map;
     }

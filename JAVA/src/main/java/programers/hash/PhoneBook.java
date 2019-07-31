@@ -5,13 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PhoneBook {
-    class Solution {
-        public boolean solution(String[] phone_book) {
-            boolean answer = true;
-            return answer;
-        }
-    }
-
     public static void main(String[] args) {
         String[] phone_book = {"123", "456", "789"};
         boolean answer = true;
@@ -37,6 +30,13 @@ public class PhoneBook {
         }
 
         System.out.println(answer);
+    }
+
+    class Solution {
+        public boolean solution(String[] phone_book) {
+            boolean answer = true;
+            return answer;
+        }
     }
 
 }

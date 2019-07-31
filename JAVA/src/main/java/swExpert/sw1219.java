@@ -31,7 +31,7 @@ public class sw1219 {
             int testCaseNumber = scanner.nextInt();
             int couple = scanner.nextInt();
 
-            for (int i = 0; i < couple ; i++) {
+            for (int i = 0; i < couple; i++) {
                 String key = scanner.next();
                 String value = scanner.next();
                 if (!map1.containsKey(key)) {
@@ -49,12 +49,12 @@ public class sw1219 {
     }
 
     private static void search(String key, int index) {
-        searchMap(map1,key,index);
-        searchMap(map2,key,index);
+        searchMap(map1, key, index);
+        searchMap(map2, key, index);
         return;
     }
 
-    private static void searchMap(HashMap<String,String> map, String key, int index){
+    private static void searchMap(HashMap<String, String> map, String key, int index) {
         if (!map.containsKey(key)) {
             return;
         } else {//map1에 key가 존재

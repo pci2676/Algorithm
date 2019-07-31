@@ -12,26 +12,6 @@ public class NetWork {
     static Queue<Integer> queue = new LinkedList<>();
     static boolean[] visit;
 
-    class Solution {
-        public int solution(int n, int[][] computers) {
-            int answer = 0;
-
-            visit = new boolean[n];
-
-            for (int i = 0; i < n; i++) {
-                if (visit[i]) {
-                    continue;
-                }
-
-                answer++;
-
-                bfs(computers, i);
-            }
-
-            return answer;
-        }
-    }
-
     public static void main(String[] args) {
         int n = 3;
         int[][] computers = {
@@ -69,8 +49,28 @@ public class NetWork {
                 queue.add(j);
             }
         }
-        while(!queue.isEmpty()){
-            bfs(computers,queue.poll());
+        while (!queue.isEmpty()) {
+            bfs(computers, queue.poll());
+        }
+    }
+
+    class Solution {
+        public int solution(int n, int[][] computers) {
+            int answer = 0;
+
+            visit = new boolean[n];
+
+            for (int i = 0; i < n; i++) {
+                if (visit[i]) {
+                    continue;
+                }
+
+                answer++;
+
+                bfs(computers, i);
+            }
+
+            return answer;
         }
     }
 }

@@ -19,7 +19,7 @@ public class sw2806 {
 
             map = new int[n][n];
 
-            fillMap(0,0,0);
+            fillMap(0, 0, 0);
 
             System.out.println("#" + t + " " + answer);
         }

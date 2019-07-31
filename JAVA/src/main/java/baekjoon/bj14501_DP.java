@@ -26,7 +26,7 @@ public class bj14501_DP {
             int totalDay = day + T[day];
 
             if (totalDay <= end + 1) {
-                dp[day] = Math.max(P[day] + dp[totalDay], dp[day+1]);
+                dp[day] = Math.max(P[day] + dp[totalDay], dp[day + 1]);
             } else {
                 dp[day] = dp[day + 1];
             }

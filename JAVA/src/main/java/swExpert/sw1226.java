@@ -29,7 +29,7 @@ public class sw1226 {
 
             dfs(1, 1, t);
 
-            System.out.println("#"+testCaseNumber+" "+maxDistance[t]);
+            System.out.println("#" + testCaseNumber + " " + maxDistance[t]);
         }
     }
 
@@ -43,9 +43,9 @@ public class sw1226 {
                 int x = col + dx[i];
                 int y = row + dy[i];
                 if (!map[x][y].equals("1")) {
-                    map[col][row]="1";
+                    map[col][row] = "1";
                     dfs(x, y, t);
-                    map[col][row]="0";
+                    map[col][row] = "0";
                 }
             }
         }
