@@ -3,13 +3,13 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.function.Function;
 
 public class bj1463_3 {
 
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws Exception {
+
         int n = Integer.parseInt(br.readLine());
         Integer[] dp = new Integer[n + 1];
 
@@ -18,17 +18,13 @@ public class bj1463_3 {
         dp[3] = 1;
 
         for (int i = 4; i <= n; i++) {
-            Integer minByOne;
-
-            minByOne = dp[i - 1];
-
+            Integer minByOne = dp[i - 1];
             Integer divideMin = Divide.getMin(dp, i);
 
             dp[i] = getMin(minByOne, divideMin) + 1;
         }
 
         System.out.println(dp[n]);
-
     }
 
     private static Integer getMin(Integer min1, Integer min2) {
@@ -39,24 +35,30 @@ public class bj1463_3 {
     }
 
     enum Divide {
-        THREE(x -> x / 3, x -> x % 3 == 0),
-        TWO(x -> x / 2, x -> x % 2 == 0);
+        THREE(3),
+        TWO(2);
 
-        private Function<Integer, Integer> execute;
-        private Function<Integer, Boolean> canDivide;
+        private Integer divideValue;
 
-        Divide(Function<Integer, Integer> execute, Function<Integer, Boolean> canDivide) {
-            this.execute = execute;
-            this.canDivide = canDivide;
+        Divide(Integer divideValue) {
+            this.divideValue = divideValue;
         }
 
         public static Integer getMin(Integer[] dp, int target) {
             return Arrays.stream(values())
-                    .filter(divideEnum -> divideEnum.canDivide.apply(target))
-                    .map(divideEnum -> divideEnum.execute.apply(target))
+                    .filter(divideEnum -> divideEnum.canDivide(target))
+                    .map(divideEnum -> divideEnum.execute(target))
                     .map(before -> dp[before])
                     .min(Integer::compareTo)
                     .orElse(9999999);
+        }
+
+        private boolean canDivide(Integer target) {
+            return target % this.divideValue == 0;
+        }
+
+        private Integer execute(Integer target) {
+            return target / this.divideValue;
         }
 
     }
