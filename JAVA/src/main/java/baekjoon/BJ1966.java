@@ -34,30 +34,28 @@ public class BJ1966 {
 
             while (true) {
                 if (printer.peek().equals(priority.peek())) {
-
-                    if (m == 0) {
-                        System.out.println(answer + 1);
-                        break;
-                    }
+                    answer++;
 
                     printer.poll();
                     priority.poll();
-                    answer++;
-                    m--;
 
+                    if (m == 0) {
+                        break;
+                    }
 
                 } else {
-                    m--;
                     int temp = printer.poll();
                     printer.offer(temp);
                 }
 
+                m--;
 
                 if (m < 0) {
                     m = printer.size() - 1;
                 }
             }
 
+            System.out.println(answer);
         }
     }
 
