@@ -37,6 +37,7 @@ public class BJ14503 {
         bfs(x, y, direction);
 
         System.out.println(answer);
+
     }
 
     //왼쪽 방향에 아직 청소하지 않은 공간이 존재한다면, 그 방향으로 회전한 다음 한 칸을 전진하고 1번부터 진행한다.
@@ -76,14 +77,6 @@ public class BJ14503 {
 
         }
 
-    }
-
-    private static int forwardY(int y, int direction) {
-        return y + fy[direction];
-    }
-
-    private static int forwardX(int x, int direction) {
-        return x + fx[direction];
     }
 
     private static int turnLeft(int direction) {
