@@ -14,20 +14,17 @@ public class BJ2231 {
             if (isConstructor(i, target)) {
                 if (min > target) {
                     min = i;
+                    System.out.println(min);
+                    return;
                 }
             }
         }
-        if (min == 1000000) {
-            min = 0;
-        }
-
-        System.out.println(min);
+        System.out.println(0);
 
     }
 
     private static boolean isConstructor(int maybeConstructor, int target) {
         String[] maybeString = String.valueOf(maybeConstructor).split("");
-        int length = maybeString.length;
         int maybeTarget = maybeConstructor;
         for (String s : maybeString) {
             maybeTarget += Integer.parseInt(s);
