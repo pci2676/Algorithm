@@ -1,5 +1,6 @@
 package programers.heap;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,27 +8,31 @@ public class MoreSpicy {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] scovile = {1, 2, 3, 9, 10, 12};
-        System.out.println(solution.solution(scovile, 7));
+        int[] scovile = {0, 0, 3, 9, 10, 12};
+        System.out.println(solution.solution(scovile, 13));
     }
 
     static class Solution {
         public int solution(int[] scoville, int K) {
+
             int answer = 0;
             List<Integer> scovilles = new LinkedList<>();
+            Arrays.sort(scoville);
             for (int each : scoville) {
                 scovilles.add(each);
             }
+
             Mixer mixer = new Mixer();
 
             while (!isReach(scovilles, K)) {
-                answer++;
-                mixer.mix(scovilles);
-
                 if (scovilles.size() == 1) {
                     return -1;
                 }
+                System.out.println(scovilles);
+                answer++;
+                mixer.mix(scovilles);
             }
+            System.out.println(scovilles);
 
             return answer;
         }
@@ -40,8 +45,6 @@ public class MoreSpicy {
             }
             return true;
         }
-
-
     }
 
     static class Mixer {
@@ -56,12 +59,13 @@ public class MoreSpicy {
         }
 
         private void addMixed(List<Integer> scovilles, Integer mixed) {
-            for (int i = 0; i < scovilles.size(); i++) {
+            for (int i = scovilles.size() - 1; i >= 0; i--) {
                 if (scovilles.get(i) < mixed) {
-                    scovilles.add(i, mixed);
+                    scovilles.add(i + 1, mixed);
                     return;
                 }
             }
+            scovilles.add(0, mixed);
         }
 
     }
