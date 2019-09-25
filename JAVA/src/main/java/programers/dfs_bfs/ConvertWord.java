@@ -58,6 +58,7 @@ public class ConvertWord {
             int count = 0;
             String[] originals = original.split("");
             String[] converts = convert.split("");
+
             for (int i = 0; i < originals.length; i++) {
                 if (!originals[i].equals(converts[i])) {
                     count++;
