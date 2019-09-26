@@ -36,9 +36,9 @@ public class TravelPath {
             int index = 0;
             for (Ticket ticket : usedTickets) {
                 answer[index] = ticket.getDepart();
+                answer[index + 1] = ticket.getDest();
                 index++;
             }
-            answer[index] = usedTickets.get(usedTickets.size() - 1).getDest();
 
             return answer;
         }
