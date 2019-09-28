@@ -2,10 +2,10 @@ package programers.graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
-import java.util.stream.Collectors;
+import java.util.Queue;
 
 public class FarNode {
 
@@ -28,7 +28,6 @@ class Solution {
         makeNodes(n, nodes);
 
         addAllLinkedNode(edge, nodes);
-
         findFarDistance(nodes);
 
         int farDistance = nodeInfo.values().stream()
@@ -44,55 +43,34 @@ class Solution {
 
     private void findFarDistance(List<Node> nodes) {
         Node firstNode = findNode(1, nodes);
-
         firstNode.visit();
-        List<Node> linkedNodes = firstNode.getLinkedNode();
-        for (Node node : linkedNodes) {
-            Stack<Node> nextNodes = new Stack<>();
-            nextNodes.push(node);
-            dfs(nextNodes, 0);
+
+        List<Node> firstLinkedNodes = firstNode.getLinkedNode();
+
+        for (Node node : firstLinkedNodes) {
+            node.visit();
+        }
+
+        Queue<Node> nodeQueue = new LinkedList<>(firstLinkedNodes);
+
+        while (!nodeQueue.isEmpty()) {
+            Node nextNode = nodeQueue.poll();
+            nextNode.visit();
+            nextNode.addDistance();
+            addInfo(nextNode);
+            addNextLinkedNode(nodeQueue, nextNode);
         }
     }
 
-    private void dfs(Stack<Node> nextNodes, int nowDistance) {
-        if (nextNodes.isEmpty()) {
-            return;
-        }
-
-        Node nextLinkedNode = nextNodes.pop();
-        if (nextLinkedNode.isVisited()) {
-            return;
-        }
-
-        nextLinkedNode.visit();
-        nextLinkedNode.changeShortDistance(nowDistance + 1);
-
-        addInfo(nextLinkedNode);
-
-        List<Node> linkedNodes = nextLinkedNode.getLinkedNode();
-
-        for (Node node : linkedNodes) {
-            nextNodes.push(node);
-        }
-
-        for (int i = 0; i < linkedNodes.size(); i++) {
-            dfs(nextNodes, nowDistance + 1);
-        }
-        nextLinkedNode.cancel();
-
-    }
-
-    private void addInfo(Node node) {
-        int index = node.getIndex();
-        int distance = node.getDistance();
-        if (nodeInfo.containsKey(index)) {
-            int storedDistance = nodeInfo.get(index);
-            if (storedDistance > distance) {
-                nodeInfo.replace(index, distance);
+    private void addNextLinkedNode(Queue<Node> nodeQueue, Node nextNode) {
+        for (Node node : nextNode.getLinkedNode()) {
+            if (node.isVisited()) {
+                continue;
             }
-            return;
+            node.visit();
+            node.changeBaseDistance(nextNode);
+            nodeQueue.offer(node);
         }
-        nodeInfo.put(index, distance);
     }
 
     private void addAllLinkedNode(int[][] edge, List<Node> nodes) {
@@ -117,6 +95,20 @@ class Solution {
                 .orElseThrow(RuntimeException::new);
     }
 
+    private void addInfo(Node node) {
+        int index = node.getIndex();
+        int distance = node.getDistance();
+        if (nodeInfo.containsKey(index)) {
+            int storedDistance = nodeInfo.get(index);
+            if (storedDistance > distance) {
+                nodeInfo.replace(index, distance);
+            }
+            return;
+        }
+        nodeInfo.put(index, distance);
+    }
+
+
     private void makeNodes(int n, List<Node> nodes) {
         for (int i = 1; i <= n; i++) {
             nodes.add(new Node(i));
@@ -128,7 +120,7 @@ class Solution {
 class Node {
     private Integer index;
     private boolean visited = false;
-    private Integer distance;
+    private int distance = 0;
     private List<Node> linkedNode = new ArrayList<>();
 
     public Node(Integer index) {
@@ -136,31 +128,27 @@ class Node {
     }
 
     public Integer getIndex() {
-        return index;
+        return this.index;
     }
 
     public boolean isVisited() {
-        return visited;
+        return this.visited;
     }
 
     public List<Node> getLinkedNode() {
-        return this.linkedNode.stream()
-                .filter(node -> !node.isVisited())
-                .collect(Collectors.toList());
+        return this.linkedNode;
     }
 
     public int getDistance() {
-        return distance;
+        return this.distance;
     }
 
-    public void changeShortDistance(int distance) {
-        if (this.distance == null) {
-            this.distance = distance;
-            return;
-        }
-        if (this.distance > distance) {
-            this.distance = distance;
-        }
+    public void addDistance() {
+        this.distance++;
+    }
+
+    public void changeBaseDistance(Node beforeNode) {
+        this.distance = beforeNode.getDistance();
     }
 
     public void addLinkedNode(Node node) {
@@ -169,10 +157,6 @@ class Node {
 
     public void visit() {
         this.visited = true;
-    }
-
-    public void cancel() {
-        this.visited = false;
     }
 
 }
