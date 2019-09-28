@@ -1,10 +1,8 @@
 package programers.graph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 
 public class FarNode {
@@ -20,8 +18,6 @@ public class FarNode {
 
 class Solution {
 
-    private static Map<Integer, Integer> nodeInfo = new HashMap<>();
-
     public int solution(int n, int[][] edge) {
         int answer = 0;
         List<Node> nodes = new ArrayList<>();
@@ -30,12 +26,13 @@ class Solution {
         addAllLinkedNode(edge, nodes);
         findFarDistance(nodes);
 
-        int farDistance = nodeInfo.values().stream()
+        int farDistance = nodes.stream()
+                .map(Node::getDistance)
                 .max(Integer::compareTo)
                 .get();
 
-        answer = (int) nodeInfo.values().stream()
-                .filter(value -> value == farDistance)
+        answer = (int) nodes.stream()
+                .filter(node -> node.getDistance() == farDistance)
                 .count();
 
         return answer;
@@ -57,7 +54,6 @@ class Solution {
             Node nextNode = nodeQueue.poll();
             nextNode.visit();
             nextNode.addDistance();
-            addInfo(nextNode);
             addNextLinkedNode(nodeQueue, nextNode);
         }
     }
@@ -94,20 +90,6 @@ class Solution {
                 .findAny()
                 .orElseThrow(RuntimeException::new);
     }
-
-    private void addInfo(Node node) {
-        int index = node.getIndex();
-        int distance = node.getDistance();
-        if (nodeInfo.containsKey(index)) {
-            int storedDistance = nodeInfo.get(index);
-            if (storedDistance > distance) {
-                nodeInfo.replace(index, distance);
-            }
-            return;
-        }
-        nodeInfo.put(index, distance);
-    }
-
 
     private void makeNodes(int n, List<Node> nodes) {
         for (int i = 1; i <= n; i++) {
