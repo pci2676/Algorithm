@@ -82,10 +82,6 @@ class Student {
         this.index = index;
         this.lendable = lendable;
         this.lost = lost;
-        if (lost && lendable) {
-            this.lendable = false;
-            this.lost = false;
-        }
     }
 
     public static Student makeLostStudent(int index) {
