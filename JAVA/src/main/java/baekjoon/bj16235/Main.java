@@ -79,8 +79,8 @@ class Land {
         this.soils = new Soil[size + 2][size + 2];
         for (int y = 0; y <= size + 1; y++) {
             for (int x = 0; x <= size + 1; x++) {
-                makeOut(x, y, size);
                 makeIn(x, y);
+                makeOut(x, y, size);
             }
         }
     }
