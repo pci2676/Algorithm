@@ -96,14 +96,13 @@ class BlackJackGame {
                 .sum();
     }
 
-    private boolean isOver() {
-        int sum = getSum();
+    private boolean isOver(int sum) {
         return sum > target;
     }
 
     public void changeMax() {
         int sum = getSum();
-        if (isOver()) {
+        if (isOver(sum)) {
             return;
         }
         if (sum > this.max) {
