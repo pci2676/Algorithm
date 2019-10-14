@@ -205,10 +205,9 @@ class Soil {
 
     public void plant(Tree tree) {
         this.trees.offer(tree);
-        tree.planted(this);
     }
 
-    public void giveNutrition(Tree tree) {
+    public void consumeNutrition(Tree tree) {
         this.nutrition -= tree.getAge();
     }
 
@@ -229,7 +228,7 @@ class Soil {
 
         while (!treePriorityQueue.isEmpty()) {
             Tree tree = treePriorityQueue.poll();
-            tree.aging();
+            tree.aging(this);
             trees.offer(tree);
         }
     }
@@ -280,7 +279,6 @@ class Tree implements Comparable<Tree> {
     private Integer age;
 
     private boolean alive = true;
-    private Soil soil;
 
     public Tree(Integer age) {
         this.age = age;
@@ -306,17 +304,13 @@ class Tree implements Comparable<Tree> {
         this.alive = false;
     }
 
-    public void planted(Soil soil) {
-        this.soil = soil;
-    }
-
-    public void aging() {
-        int restNutrition = this.soil.getNutrition();
+    public void aging(Soil soil) {
+        int restNutrition = soil.getNutrition();
         if (!canTake(restNutrition)) {
             death();
             return;
         }
-        this.soil.giveNutrition(this);
+        soil.consumeNutrition(this);
         this.age++;
     }
 
@@ -339,7 +333,6 @@ class S2D2 {
     public int getNutrition(int x, int y) {
         return nutrition[x][y];
     }
-
 
 }
 
