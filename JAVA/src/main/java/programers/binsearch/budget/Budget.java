@@ -17,19 +17,19 @@ class Solution {
     public int solution(int[] budgets, int M) {
         int answer = 0;
         Arrays.sort(budgets);
-
+        BudgetPlan budgetPlan = new BudgetPlan(budgets);
         //전부 원하는 값 할당가능
-        if (canAllocate(budgets, M)) {
-            return budgets[budgets.length - 1];
+        if (budgetPlan.canAllAllocate(M)) {
+            return budgetPlan.getMaxOfBudgets();
         }
 
         //한곳도 원하는 값 할당 불가능
-        if (canNotAllocate(budgets, M)) {
-            return getMin(budgets, M);
+        if (budgetPlan.canNotAllocate(M)) {
+            return budgetPlan.findMinBudget(M);
         }
 
         //일부만 할당 가능
-        int size = budgets.length;
+        int size = budgetPlan.getBudgetsSize();
         int min = 0;
         int max = M;
         int preMid = 0;
@@ -94,6 +94,64 @@ class Solution {
         }
         return min;
     }
+
+}
+
+class BudgetPlan {
+
+    private int[] budgets;
+    private long[] budgetSums;
+    private int maxBudget;
+
+    public BudgetPlan(int[] budgets) {
+        this.budgets = budgets;
+        initBudgetSums();
+    }
+
+    private void initBudgetSums() {
+        this.budgetSums = new long[budgets.length];
+        budgetSums[0] = budgets[0];
+        for (int i = 1; i < budgets.length; i++) {
+            budgetSums[i] = budgetSums[i - 1] + budgets[i];
+        }
+    }
+
+    public boolean canAllAllocate(int M) {
+        return M >= budgetSums[budgetSums.length - 1];
+    }
+
+    public boolean canNotAllocate(int M) {
+        return budgets[0] > M;
+    }
+
+    public int getMaxOfBudgets() {
+        return budgets[budgets.length - 1];
+    }
+
+    public int findMinBudget(int M) {
+        int min = budgets[0];
+        while (M < min * budgets.length) {
+            min--;
+        }
+        return min;
+    }
+
+    public int getBudgetsSize() {
+        return this.budgets.length;
+    }
+
+    public int[] getBudgets() {
+        return budgets;
+    }
+
+    public long[] getBudgetSums() {
+        return budgetSums;
+    }
+
+    public int getMaxBudget() {
+        return maxBudget;
+    }
+
 
 }
 
