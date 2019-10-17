@@ -26,7 +26,7 @@ public class Main {
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
-                nutrition[j][i] = Integer.parseInt(st.nextToken());
+                nutrition[i][j] = Integer.parseInt(st.nextToken());
             }
         }
         S2D2 s2d2 = new S2D2(nutrition);
@@ -87,11 +87,13 @@ class Land {
 
     private void makeIn(int x, int y) {
         this.soils[x][y] = Soil.makeInSoil(x, y);
+        soils[x][y].fillLand(this);
     }
 
     private void makeOut(int x, int y, int size) {
         if (x == 0 || x == size + 1 || y == 0 || y == size + 1) {
             this.soils[x][y] = Soil.makeOutSoil(x, y);
+            soils[x][y].fillLand(this);
         }
     }
 
@@ -151,7 +153,6 @@ class Land {
             for (int x = 1; x <= size; x++) {
                 int nutrition = s2D2.getNutrition(x - 1, y - 1);
                 soils[x][y].fillNutrition(nutrition);
-                soils[x][y].fillLand(this);
             }
         }
     }
