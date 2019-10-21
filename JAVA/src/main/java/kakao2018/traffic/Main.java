@@ -76,28 +76,20 @@ class KakaoLog {
         String[] hms = format[1].split(":");
         Double hmsTime = getHmsTime(hms);
         Double costTime = getCostTime(format[2]);
-        startTime = getDoubleTime(hmsTime - costTime + 0.001);
-        endTime = hmsTime;
-    }
-
-    private Double getCostTime(String s) {
-        String cost = s.split("s")[0];
-        return getDoubleTime(cost);
+        startTime = Double.parseDouble(String.format("%.3f", hmsTime - costTime + 0.001));
+        endTime = Double.parseDouble(String.format("%.3f", hmsTime));
     }
 
     private Double getHmsTime(String[] hms) {
         double hour = Double.parseDouble(hms[0]) * 60 * 60;
         double min = Double.parseDouble(hms[1]) * 60;
         double sec = Double.parseDouble(hms[2]);
-        return getDoubleTime(hour + min + sec);
+        return hour + min + sec;
     }
 
-    public Double getDoubleTime(String time) {
-        return getDoubleTime(Double.valueOf(time));
-    }
-
-    public Double getDoubleTime(Double time) {
-        return Double.parseDouble(String.format("%.3f", time));
+    private Double getCostTime(String s) {
+        String cost = s.split("s")[0];
+        return Double.parseDouble(cost);
     }
 
     public boolean isBetween(TimeRange range) {
