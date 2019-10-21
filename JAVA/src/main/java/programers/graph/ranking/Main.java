@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -43,29 +42,29 @@ class Solution {
 
 class Boxer {
     private int number;
-    private Set<Boxer> weak = new HashSet<>(); // 내가 이긴 애들 == 나한테 진애들 == 약한애들
-    private Set<Boxer> strong = new HashSet<>(); // 내가 진 애들 == 나한테 이긴애들 == 강한애들
+    private Set<Boxer> weak = new HashSet<>(); // 내가 이긴 애들 == 약한애들
+    private Set<Boxer> strong = new HashSet<>(); // 내가 진 애들 == 강한애들
 
     public Boxer(int number) {
         this.number = number;
     }
 
     public int getMatchCount() {
-        Set<Boxer> loseMatch = new HashSet<>();
-        Set<Boxer> winMatch = new HashSet<>();
+        Set<Boxer> loseMatch = new HashSet<>(); // 나보다 강한애들을 적어둘 곳
+        Set<Boxer> winMatch = new HashSet<>(); // 나보다 약한애들을 적어둘 곳
         makeLoseMatch(this, loseMatch);
         makeWinMatch(this, winMatch);
         return loseMatch.size() + winMatch.size();
     }
 
     private void makeLoseMatch(Boxer boxer, Set<Boxer> loseMatch) {
-        for (Boxer stronger : boxer.strong) {
-            if (loseMatch.contains(stronger)) {
+        for (Boxer stronger : boxer.strong) { // 나보다 강한애들중에
+            if (loseMatch.contains(stronger)) { // 이미 강한애 목록에 있는애는 건너뛰고
                 continue;
             }
-            makeLoseMatch(stronger, loseMatch);
+            makeLoseMatch(stronger, loseMatch); // 목록에 없는 없으면 이 사람보다 강한사람들을 나보다 강한목록에 추가하러 가자
         }
-        loseMatch.addAll(boxer.strong);
+        loseMatch.addAll(boxer.strong); // 나보다 강한 사람들은 전부 목록에 추가하자
     }
 
     private void makeWinMatch(Boxer boxer, Set<Boxer> winMatch) {
@@ -78,29 +77,17 @@ class Boxer {
         winMatch.addAll(boxer.weak);
     }
 
-    public void win(Boxer boxer) { // 내가 boxer 를 이겼다
-        weak.add(boxer);// 내가 이긴애로 추가
-        weak.addAll(boxer.weak); // 얘한테 진애들도 내가 다이김
+    public void win(Boxer boxer) { // 내가 이겼다
+        weak.add(boxer);// 나보다 약하다
     }
 
     public void lose(Boxer boxer) { // 내가 졌다
         strong.add(boxer); // 나보다 강하다
-        strong.addAll(boxer.strong); // 강한애보다 강한애들은 나보다 강하다
     }
 
     public int getNumber() {
         return this.number;
     }
-
-    @Override
-    public String toString() {
-        return "Boxer{" +
-                "number=" + number +
-                ", win=" + weak.stream().map(Boxer::getNumber).collect(Collectors.toList()) +
-                ", lose=" + strong.stream().map(Boxer::getNumber).collect(Collectors.toList()) +
-                '}';
-    }
-
 }
 
 class MatchHistory {
@@ -127,6 +114,7 @@ class MatchHistory {
         if (winner != null && loser != null) {
             winner.win(loser);
             loser.lose(winner);
+            String sd = "sdfsdf";
         }
     }
 
