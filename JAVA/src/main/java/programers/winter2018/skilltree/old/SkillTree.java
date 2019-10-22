@@ -1,4 +1,4 @@
-package programers.stack_queue;
+package programers.winter2018.skilltree.old;
 
 import java.util.LinkedList;
 import java.util.Queue;
