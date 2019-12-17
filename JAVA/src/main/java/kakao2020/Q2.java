@@ -1,112 +1,121 @@
 package kakao2020;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Stack;
+
 
 public class Q2 {
 
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.solution("(()())()").equals("(()())()"));
+        System.out.println(solution.solution(")(").equals("()"));
+        System.out.println(solution.solution("()))((()").equals("()(())()"));
+        System.out.println(solution.solution("))((()").equals("(())()"));
+    }
+}
+
+class Solution {
+
+    public String solution(String p) {
+        if (p.isEmpty()) {
+            return p;
+        }
+
+        if (Bracket.isCorrect(p)) {
+            return p;
+        }
+
+        Bracket bracket = new Bracket(p);
+        return bracket.makeCorrect();
+    }
+
+}
+
+class Bracket {
     private static final String LEFT = "(";
     private static final String RIGHT = ")";
 
-    public static void main(String[] args) throws IOException {
-        String input = br.readLine();
-        Solution solution = new Solution();
-        String answer = solution.solution(input);
-        System.out.println(answer);
+    private String u;//균형잡힌 문자열 더이상 분리 불가능한 가장 작은 균형잡힌 녀석
+    private String v;//빈 문자열 가능
+
+    public Bracket(String w) {
+        this.u = findSmall(w);
+        this.v = findNotSmall(w, u);
+        if (this.v == null) {
+            this.v = "";
+        }
     }
 
-    static class Solution {
-        public String solution(String p) {
-            if (isCorrectString(p)) {
-                return p;
+    public static boolean isCorrect(String w) {
+        Stack<String> stack = new Stack<>();
+        String[] split = w.split("");
+        for (String bracket : split) {
+            if (bracket.equals(LEFT)) {
+                stack.push(bracket);
+                continue;
             }
-            return getAnswer(p);
+            if (stack.isEmpty()) {
+                return false;
+            }
+            stack.pop();
+        }
+        return stack.isEmpty();
+    }
+
+    private String findSmall(String w) {
+        int left = 0;
+        int right = 0;
+        String[] split = w.split("");
+
+        StringBuilder small = new StringBuilder();
+
+        for (String bracket : split) {
+            small.append(bracket);
+            if (bracket.equals(LEFT)) {
+                left++;
+            } else {
+                right++;
+            }
+            if (left == right) {
+                break;
+            }
+        }
+        return small.toString();
+    }
+
+    private String findNotSmall(String w, String small) {
+        return w.substring(small.length());
+    }
+
+    public String makeCorrect() {
+        if (u.isEmpty()) {
+            return u;
+        }
+        if (isCorrect(u)) {
+            Bracket bracket = new Bracket(v);
+            return u + bracket.makeCorrect();
         }
 
-        private String getAnswer(String w) {
-            if (w.length() == 0) {
-                return "";
+        StringBuilder correct = new StringBuilder("(");
+
+        Bracket bracket = new Bracket(v);
+        correct.append(bracket.makeCorrect());
+        correct.append(")");
+
+        //u 앞 뒤 떼고 바꿔서 붙이기
+        String[] split = u.split("");
+        for (int i = 1; i < split.length - 1; i++) {
+            if (split[i].equals(LEFT)) {
+                correct.append(RIGHT);
+            } else {
+                correct.append(LEFT);
             }
-
-            int splitIndex = getSplitIndex(w);
-            String u = w.substring(0, splitIndex + 1);
-            String v = w.substring(splitIndex + 1);
-
-            if (isCorrectString(u)) {
-                return u + getAnswer(v);
-            }
-
-            u = sort(u);
-
-            return u + getAnswer(v);
         }
 
-        //균형잡힌 문자열 경계점 구하기
-        private Integer getSplitIndex(String p) {
-            String[] inputs = p.split("");
-
-            int leftCount = 0;
-            int rightCount = 0;
-
-            for (int i = 0; i < inputs.length; i++) {
-                String word = inputs[i];
-                if (word.equals(LEFT)) {
-                    leftCount++;
-                } else {
-                    rightCount++;
-                }
-
-                if (leftCount == rightCount) {
-                    return i;
-                }
-            }
-            return inputs.length - 1;
-        }
-
-        //올바른 문자열인지 체크
-        private boolean isCorrectString(String p) {
-            String[] gwalHos = p.split("");
-            Stack<String> stack = new Stack<>();
-            stack.push(gwalHos[0]);
-
-            boolean answer = true;
-
-            for (int i = 1; i < gwalHos.length; i++) {
-                String gwalHo = gwalHos[i];
-                if (gwalHo.equals(LEFT)) {
-                    stack.push(gwalHo);
-                }
-                if (gwalHo.equals(RIGHT)) {
-                    if (stack.empty()) {
-                        answer = false;
-                        break;
-                    }
-                    if (stack.pop().equals(RIGHT)) {
-                        answer = false;
-                        break;
-                    }
-                }
-            }
-            if (!stack.empty()) {
-                answer = false;
-            }
-            return answer;
-        }
-
-        private String sort(String u) {
-            StringBuilder temp = new StringBuilder(LEFT);
-            String[] leftU = u.split("");
-            for (int i = leftU.length - 2; i > 0; i--) {
-                temp.append(leftU[i]);
-            }
-            temp.append(RIGHT);
-            return temp.toString();
-        }
+        return correct.toString();
     }
 }
+
 //'(' 와 ')' 로만 이루어진 문자열이 있을 경우, '(' 의 개수와 ')' 의 개수가 같다면 이를 균형잡힌 괄호 문자열이라고 부릅니다.
 //그리고 여기에 '('와 ')'의 괄호의 짝도 모두 맞을 경우에는 이를 올바른 괄호 문자열이라고 부릅니다.
 //예를 들어, "(()))("와 같은 문자열은 균형잡힌 괄호 문자열 이지만 올바른 괄호 문자열은 아닙니다.
@@ -118,6 +127,7 @@ public class Q2 {
 //2. 문자열 w를 두 "균형잡힌 괄호 문자열" u, v로 분리합니다. 단, u는 "균형잡힌 괄호 문자열"로 더 이상 분리할 수 없어야 하며, v는 빈 문자열이 될 수 있습니다.
 //3. 문자열 u가 "올바른 괄호 문자열" 이라면 문자열 v에 대해 1단계부터 다시 수행합니다.
 //  3-1. 수행한 결과 문자열을 u에 이어 붙인 후 반환합니다.
+
 //4. 문자열 u가 "올바른 괄호 문자열"이 아니라면 아래 과정을 수행합니다.
 //  4-1. 빈 문자열에 첫 번째 문자로 '('를 붙입니다.
 //  4-2. 문자열 v에 대해 1단계부터 재귀적으로 수행한 결과 문자열을 이어 붙입니다.
