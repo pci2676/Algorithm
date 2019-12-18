@@ -1,4 +1,4 @@
-package kakao2020;
+package kakao2020.q2;
 
 import java.util.Stack;
 
