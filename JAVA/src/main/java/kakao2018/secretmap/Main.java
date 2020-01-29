@@ -14,12 +14,12 @@ class Solution {
     public String[] solution(int n, int[] arr1, int[] arr2) {
         String[] answer = new String[n];
         //OR 연산
-        int[] map = new int[arr1.length];
-        for (int i = 0; i < arr1.length; i++) {
+        int[] map = new int[n];
+        for (int i = 0; i < n; i++) {
             map[i] = arr1[i] | arr2[i];
         }
         //2진수 변환
-        for (int i = 0; i < map.length; i++) {
+        for (int i = 0; i < n; i++) {
             //스트링 변환
             answer[i] = BinaryConverter.convert(new StringBuilder(), map[i]);
             //부족한 앞부분 채우기
